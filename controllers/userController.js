@@ -12,7 +12,7 @@ const signupUser = async(req, res) =>{
     try{
         const user = await User.signup(username, email, password)
         const token = createToken(user._id, user.username, user.email)
-        res.cookie("token", token, { httpOnly: true, secure: true }).status(200).json({username, email, token})
+        res.cookie("token", token).status(200).json({username, email, token})
     }catch(error){
         res.status(400).json({error: error.message})
     }
